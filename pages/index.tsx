@@ -130,7 +130,10 @@ const Search: NextPage = () => {
                 (inputValue.length > 10 && inputValue.length < 19)
                || (inputValue.length > 20 && inputValue.length < 24)
             ) && <div className={s.help}>Длина УИН должна быть 20 или 25 цифр</div>}
-            {code.length > 0 && <div className={s.help}>{code}</div>}
+            {code.length > 0 && <div
+                onDoubleClick={()=> {setInputValue(code); setCode('')}}
+                style={{cursor:'pointer'}}
+                className={s.help}>{code}</div>}
 
         </div>
           {
