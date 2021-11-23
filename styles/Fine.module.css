@@ -1,0 +1,24 @@
+.fine{
+    margin-top: 15px;
+    padding: 22px 15px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+}
+.fine span:nth-child(1) {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+}
+.listItem{
+    margin-top: 4px;
+    display: flex;
+}
+.listItem div:nth-child(1) {
+    flex: 0 0 300px;
+}
