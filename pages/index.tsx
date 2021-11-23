@@ -61,7 +61,7 @@ const Search: NextPage = () => {
   }
   useEffect(() => {
         if(inputValue.length === 19 || inputValue.length === 24){
-            count(inputValue)
+            getUinSymbol(inputValue)
         }
     }, [inputValue])
 
@@ -80,40 +80,27 @@ const Search: NextPage = () => {
         setStatus('fail')
     }
   }
-  const count = (num:string) => {
-        let arr = num.split('').map(n => +n)
+  const getUinSymbol = (num:string) => {
+      let arr = num.split('').map(n => +n)
 
-        let mult = 1
-        let amount = 0
-        for(let i=0; i < arr.length; i++){
-            if(mult === 11 || mult === 21){
-                mult = 1
-            }
-            amount += arr[i] * mult
-            mult++
-        }
-
-        let res = amount % 11
-        if(res <= 9) return setCode(inputValue+res);
-
-
-        mult = 3
-        amount = 0
-        for(let i=0; i < arr.length; i++){
-            if(mult === 11 || mult === 21){
-                mult = 1
-            }
-            amount += arr[i] * mult
-            mult++
-        }
-
-        res = amount % 11
-        if(res <= 9) {
-            return setCode(inputValue+res);
-        } else {
-            return setCode(inputValue+0);
-        }
-
+      const loop = function (mult:number, amount:number) {
+          for (let i = 0; i < arr.length; i++) {
+              if (mult === 11 || mult === 21) {
+                  mult = 1
+              }
+              amount += arr[i] * mult
+              mult++
+          }
+          return amount % 11
+      }
+      let res = loop(1, 0)
+      if (res <= 9) return setCode(inputValue+res);
+      res = loop(3, 0)
+      if (res <= 9) {
+          return setCode(inputValue+res);
+      } else {
+          return setCode(inputValue+0);
+      }
     }
 
     return <>
